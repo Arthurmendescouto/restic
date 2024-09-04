@@ -21,7 +21,7 @@ export default function App() {
         placeholderTextColor="#fff"
         keyboardType="default"
         onChangeText={setTaskText}
-        value={taskText}
+        value={taskText} 
       />
       <TouchableOpacity style={styles.InputButton}>
         <Feather name="plus-square" size={24} color="white" />
