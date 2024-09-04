@@ -1,10 +1,11 @@
 import "@expo/metro-runtime";
 import { StatusBar } from 'expo-status-bar';
-import { FlatList, StyleSheet, View,Text} from 'react-native';
+import { FlatList, StyleSheet, View,Text, TextInput, Touchable, TouchableOpacity} from 'react-native';
 import{Task} from './src/components/task'
 import { CardNumber } from './src/components/CardNumber/index';
 import { InputAddTask } from './src/components/InputAddTask/index';
 import { useState } from "react";
+import { Feather } from '@expo/vector-icons'; 
 
 export default function App() {
   const [tasks,setTasks]=useState<{description: string; check:boolean}[]>([]);
@@ -12,7 +13,21 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <InputAddTask />
+      <StatusBar style="auto" />
+      <View style={styles.container}>
+      <TextInput 
+        style={styles.input}
+        placeholder="Digite a tarefa"
+        placeholderTextColor="#fff"
+        keyboardType="default"
+        onChangeText={setTaskText}
+        value={taskText}
+      />
+      <TouchableOpacity style={styles.InputButton}>
+        <Feather name="plus-square" size={24} color="white" />
+      </TouchableOpacity>
+    </View>
+
       <View style={{flexDirection:'row',gap: 16}}>
       <CardNumber />
       <CardNumber />
@@ -35,8 +50,7 @@ ListEmptyComponent={()=>(
     <Text>Crie uma tarefa para começar.</Text>
   </View>
 )}
-      />
-      <StatusBar style="auto" />
+      />      
     </View>
   );
 }
@@ -48,6 +62,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 16,
-    gap:16
+    paddingTop:64,
+    gap:16,
   },
+  InputContainer:{
+    flexDirection: 'row',
+    borderRadius: 4,
+    backgroundColor:'#252627'
+  },
+  input: {
+    flex:1,
+    padding:16,
+    color:'#fff'
+  },
+  InputButton:{
+    backgroundColor: '#1E1E1E',
+    padding:16,
+    borderRadius: 4,
+  }
 });
+
+

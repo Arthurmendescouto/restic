@@ -17,4 +17,4 @@ export const InputButton=styled.TouchableOpacity`
 background-color:#1E1E1E;
 padding: 16px;
 border-radius: 4px;
-`
+`;

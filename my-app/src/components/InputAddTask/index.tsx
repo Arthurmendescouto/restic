@@ -1,5 +1,5 @@
 import React from 'react';
-import { Feather } from '@expo/vector-icons'; // Verifique se este pacote está instalado
+import { Feather } from '@expo/vector-icons'; 
 import { InputContainer, Input, InputButton } from './styles';
 
 export function InputAddTask() {
