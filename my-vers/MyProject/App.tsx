@@ -1,14 +1,14 @@
+import React from 'react';
 import "@expo/metro-runtime";
 import { StatusBar } from 'expo-status-bar';
-import { FlatList, StyleSheet, View,Text, TextInput, Touchable, TouchableOpacity} from 'react-native';
-import{Task} from './src/components/task'
-import { CardNumber } from './src/components/CardNumber/index';
+import { FlatList, StyleSheet, View, Text } from 'react-native';
+import { Task } from './src/components/Task';
+import { CardNumber } from './src/components/CardHouse';
 import { InputAddTask } from './src/components/InputAddTask/index';
-import { useState } from "react";
-import { Feather } from '@expo/vector-icons'; 
+import { useState } from 'react';
 
 export default function App() {
-  const[tasks,setTasks]=useState<{description: string; check: Boolean}[]>([]);
+  const[tasks,setTasks]=useState<{description: string; string; check: Boolean}[]>([]);
   const[taskText,setTaskText]=useState('')
 
   return (
@@ -20,9 +20,9 @@ export default function App() {
       data={tasks}
       keyExtractor={(item, index)=> index.toString()}
       renderItem={
-        ({item})=>
-          (<Task/>)
-        
+        ({item})=>{
+          <Task/>
+        }
       }
       ListEmptyComponent={()=>(
         <View>
@@ -38,33 +38,13 @@ export default function App() {
   );
 }
 
-
- //asdf
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#28385E',
+    backgroundColor: '#000000',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 16,
-    paddingTop:64,
+    padding:16,
     gap:16,
   },
-  InputContainer:{
-    flexDirection: 'row',
-    borderRadius: 4,
-    backgroundColor:'#252627'
-  },
-  input: {
-    flex:1,
-    padding:16,
-    color:'#fff'
-  },
-  InputButton:{
-    backgroundColor: '#1E1E1E',
-    padding:16,
-    borderRadius: 4,
-  }
 });
-
-
