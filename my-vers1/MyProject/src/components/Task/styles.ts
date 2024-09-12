@@ -1,21 +1,23 @@
 import styled from 'styled-components/native';
 
-export const Container =styled.TouchableOpacity`
-    width: 100%;
-    height: 66px;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #161616;
-    overflow: hidden;
-    border-radius: 4px;
-    margin: 16px;
+export const Container = styled.TouchableOpacity`
+  width: 100%;
+  height: 66px;
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #161616;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  padding: 16px; /* Adiciona padding horizontal */
 `;
 
 export const TaskText=styled.Text`
 color: white;
 font-size: 16px;
 font-weight: 500;
+
 `;
 
 export const TaskDone=styled.TouchableOpacity`
@@ -23,8 +25,9 @@ width: 51px;
 height: 31px;
 background-color: #343333;
 justify-content: center;
-align-items: start;
+align-items: flex-start;
 border-radius: 100px;
+flex: 1;
 `
 
 export const TaskDelete=styled.TouchableOpacity`
