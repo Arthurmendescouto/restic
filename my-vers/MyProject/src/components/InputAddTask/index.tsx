@@ -17,6 +17,7 @@ export function InputAddTask({onPress, OnchangeText, value}:Props){
                 keyboardType='default'
                 value={value}
                 onChangeText={OnchangeText}
+                onSubmitEditing={onPress}
             ></Input>
             <InputButton onPress={onPress}>
                 <Feather name="plus-square" size={24} color="white" />

@@ -3,21 +3,28 @@ import { Feather } from '@expo/vector-icons';
 import { Container, TaskText, TaskDone, TaskDelete } from './styles';
 import FontAwesome from 'react-native-vector-icons/MaterialIcons';
 
-interface TaskProps {
-  description: string;
-  check: boolean;
+
+
+type Props={
+  title: string;
+  status: boolean;
+  onCheck?:()=>void
+  onRemove?:()=>void;
 }
 
-export function Task({ description, check }: TaskProps) {
+export function Task({ title,status,onCheck,onRemove }: Props) {
   return (
     <Container>
-      <TaskDone>
-      <FontAwesome name="circle" size={28} color="white" />
+      <TaskDone onPress={onCheck} style={status?{backgroundColor:'#0E9577'}:{}}>
+      {!status && <FontAwesome name="circle" size={28} color="white" />}
+      {status && <FontAwesome name="circle" size={28} color="white"
+      style={{ borderColor: 'white', 
+        marginLeft:'23px'}} />}
 
 
       </TaskDone>
-      <TaskText>{description}</TaskText>
-      <TaskDelete>
+      <TaskText>{title}</TaskText>
+      <TaskDelete onPress={onRemove}>
         <Feather name='trash-2' size={24} color='white' />
       </TaskDelete>
     </Container>

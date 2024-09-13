@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "@expo/metro-runtime";
 import { StatusBar } from 'expo-status-bar';
 import { FlatList, StyleSheet, View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { Task } from './src/components/Task';
 import { CardNumber } from './src/components/CardHouse';
 import Feather from 'react-native-vector-icons/Feather';
+import { InputAddTask } from './src/components/InputAddTask';
 
 export default function App() {
   const [tasks, setTasks] = useState<{ description: string; check: boolean }[]>([]);
@@ -26,29 +27,28 @@ export default function App() {
     setTaskText('');
   }
 
+  function handleTaskChangeStatus(taskToChange:{description:string;check:boolean}){
+    const updatedTasks=tasks.filter((task)=>task!==taskToChange);
+    const newTask={
+      description:taskToChange.description,
+      check: !taskToChange.check,
+    }
+    updatedTasks.push(newTask);
+    setTasks(updatedTasks);
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" /> 
       <CardNumber /> 
-      <View style={styles.inputContainer}>
-        <TextInput 
-          style={styles.input}
-          placeholder='Digite a tarefa' 
-          placeholderTextColor={"white"}
-          keyboardType='default'
-          value={taskText}
-          onChangeText={setTaskText}
-        />
-        <TouchableOpacity style={styles.inputButton} onPress={handleTaskAdd}>
-          <Feather name="plus-square" size={24} color="white" />
-        </TouchableOpacity>        
-      </View> 
+      <InputAddTask onPress={handleTaskAdd} OnchangeText={setTaskText} value={taskText} /> 
       
       <FlatList 
         data={tasks}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
-          <Task description={item.description} check={item.check} />
+          <Task title={item.description} status={item.check}
+          onCheck={()=>handleTaskChangeStatus(item)} />
         )}
         ListEmptyComponent={() => (
           <View>
