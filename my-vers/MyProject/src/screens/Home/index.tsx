@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import "@expo/metro-runtime";
-import { StatusBar } from 'expo-status-bar';
 import { FlatList, StyleSheet, View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
-import { Task } from './src/components/Task';
-import { CardHouse } from './src/components/CardHouse';
-import Feather from 'react-native-vector-icons/Feather';
-import { InputAddTask } from './src/components/InputAddTask';
+import { Task } from '../../components/Task';
+import { CardHouse } from '../../components/CardHouse';
+import { InputAddTask } from '../../components/InputAddTask';
 
-export default function App() {
+type TaskType={
+    description:string;
+    check:Boolean;
+}
+
+export default function Home() {
   const [tasks, setTasks] = useState<{ description: string; check: boolean }[]>([]);
   const [taskText, setTaskText] = useState('');
 
@@ -27,21 +30,19 @@ export default function App() {
     setTaskText('');
   }
 
-  function handleTaskChangeStatus(taskToChange) {
+  function handleTaskChangeStatus(taskToChange:TaskType) {
     // Atualiza o status da tarefa clicada e mantém as outras inalteradas
-    const updateTasks=tasks.map((task)=>{
-      if(task.description===taskToChange.description){
-        return{ ...task,check:!task.check}
-      } else{
-        return task
-      }
-    })
-    setTasks(updateTasks);
-  };
+    const updatedTasks = tasks.map(task =>
+      task.description === taskToChange.description
+        ? { ...task, check: !task.check }
+        : task
+    );
+    setTasks(updatedTasks);
+  }
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" /> 
+      
       <CardHouse /> 
       <InputAddTask onPress={handleTaskAdd} OnchangeText={setTaskText} value={taskText} /> 
       
@@ -60,7 +61,7 @@ export default function App() {
         )}
       />
 
-      <StatusBar style="auto" />
+     
     </View>
   );
 }

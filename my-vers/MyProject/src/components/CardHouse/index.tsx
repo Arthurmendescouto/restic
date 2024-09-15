@@ -1,6 +1,6 @@
 import{Container, CardTitle} from './styles';
 
-export function CardNumber(){
+export function CardHouse(){
     return(
         <Container>
             <CardTitle>Casa</CardTitle>
