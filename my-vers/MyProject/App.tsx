@@ -29,7 +29,7 @@ export default function App() {
 
   function handleTaskChangeStatus(taskToChange) {
     // Atualiza o status da tarefa clicada e mantém as outras inalteradas
-    const updateTasks=tasks.map((task)=>{
+    const updateTasks=tasks.map(task=>{
       if(task.description===taskToChange.description){
         return{ ...task,check:!task.check}
       } else{

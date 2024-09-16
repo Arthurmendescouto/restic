@@ -8,14 +8,14 @@ background-color: #714dd9;
 overflow: hidden;
 gap: 8px;
 display: flex;
-margin-top: -150px;
+margin-top: -130px;
 `
 export const CardTitle=styled.Text`
 color: white;
 font-size: 30px;
 font-weight: 700;
 text-align:center;
-margin-top:150px ;
+margin-top:170px ;
 `
 
 

@@ -19,7 +19,7 @@ export function Task({ title,status,onCheck,onRemove }: Props) {
       {!status && <FontAwesome name="circle" size={28} color="white" />}
       {status && <FontAwesome name="circle" size={28} color="white"
       style={{ borderColor: 'white', 
-        marginLeft:'1.5rem'}} />}
+        marginLeft:20}} />}
 
 
       </TaskDone>
