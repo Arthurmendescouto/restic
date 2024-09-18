@@ -1,76 +1,58 @@
 import styled from "styled-components/native";
 
-export const Container=styled.View`
-flex:14;
-background-color: #28385e;
-padding: 16px;
-gap: 16px;
+export const Container = styled.View`
+    flex: 1;
+    background-color: #000000;
+    padding: 0; /* Removido o padding para ocupar todo o espaço */
 `;
 
-export const TopContainer=styled.View`
-flex-direction: row;
-justify-content: space-between;
-align-items: flex-start;
+export const TopContainer = styled.View`
+    flex-direction: row;
+    align-items: center;
+    background-color: #714dd9;
+    padding: 60px; /* Ajuste conforme necessário */
+    border-radius: 40px; /* Bordas arredondadas */
+    width: 100%; /* Faz com que o container ocupe toda a largura */
+    position: absolute; /* Mudei para absolute para ocupar todo o topo */
+    top: 0; /* Para garantir que fique no topo */
 `;
 
-export const TopButton=styled.View`
-flex-direction: row;
-justify-content: start;
-align-items: center;
-gap: 16px;
+export const TopButton = styled.TouchableOpacity`
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    position: absolute; /* Para manter na esquerda */
+    left: 20px; /* Ajuste conforme necessário */
+    padding-top:20px ;
+    
 `;
 
-export const TopText=styled.View`
-color: #fff;
-font-size: 16px;
+export const TopText = styled.Text`
+    color: #fff;
+    font-size: 16px;
+    margin-top: 3;
 `;
 
-export const TitleContainer=styled.View`
-background-color: #384163;
-border-radius:4px;
-padding: 8px 16px;
+export const TitleContainer = styled.View`
+    flex: 1; /* Para garantir que ocupe o espaço disponível */
+    align-items: center; /* Centraliza o conteúdo */
+    justify-content: center;
+    margin-top: -210px;
 `;
 
-export const Title=styled.Text`
-color: white;
-font-size: 20px;
+export const Title = styled.Text`
+    color: white;
+    font-size: 24px; /* Aumenta o tamanho da fonte */
+    text-align: center; /* Centraliza o texto */
 `;
 
-export const StatusContainer=styled.View`
-flex-direction: row;
-justify-content: space-between;
-gap: 16px;
+export const StatusContainer = styled.View`
+    flex: 1;
+    margin-top: 16px; /* Manter o espaço abaixo do TopContainer */
 `;
 
-export const StatusCard=styled.View`
-background-color: #384163;
-border-radius: 4px;
-padding: 16px;
+export const TextStatus = styled.Text`
+    color: #fff;
+    font-size: 16px;
+    margin-top: -180px;
 `;
-
-export const StatusTextContainer=styled.View`
-padding: 16px;
-`;
-
-export const TextStatus=styled.Text`
-color: #fff;
-font-size: 16px;
-`;
-
-export const StatusButtonDel=styled.TouchableOpacity`
-background-color: #f22424;
-border-radius: 4px;
-padding:16px;
-`;
-
-export const StatusIcon=styled.View`
-background-color:#e88a1a ;
-border-radius: 4px;
-padding: 16px;
-`;
-
-export const StatusText=styled.View`
-color: #fff;
-font-size: 16px;
-`;
-
