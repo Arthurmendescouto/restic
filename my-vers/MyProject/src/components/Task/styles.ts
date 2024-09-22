@@ -9,7 +9,7 @@ export const Container =styled.TouchableOpacity`
     background-color: #161616;
     overflow: hidden;
     border-radius: 4px;
-    margin: 16px;
+    margin-top: 20px;
 `;
 
 export const TaskText=styled.Text`
@@ -29,9 +29,10 @@ border-radius: 100px;
 
 export const TaskDelete=styled.TouchableOpacity`
 width: 56px;
-height: 56px;
-background-color: black;
+height: 62px;
+background-color: #c91025;
 justify-content: center;
 align-items: center;
+border-radius: 4px;
 `
 

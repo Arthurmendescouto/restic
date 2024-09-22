@@ -17,18 +17,27 @@ type Props = NativeStackScreenProps<RootStackParamList>;
 export default function Details({ route }: Props) {
     const navigation = useNavigation();
 
+    const handleBackPress = () => {
+        console.log("Voltando para a tela anterior");
+        navigation.goBack();
+    };
+
+    const handleTitlePress = () => {
+        console.log("Título 'Casa' clicado");
+    };
+
     return (
         <Container>
             <TopContainer>
-                <TopButton onPress={() => navigation.goBack()} activeOpacity={0.7}>
+                <TopButton onPress={handleBackPress} activeOpacity={0.7}>
                     <Feather name="chevron-left" size={24} color="white" />
                 </TopButton>
+                <TitleContainer>
+                    <Title style={{ userSelect: 'none' }} >
+                        Casa
+                    </Title>
+                </TitleContainer>
             </TopContainer>
-            <TitleContainer>
-                <Title style={{ textAlign: 'center', color: 'white', userSelect: 'none' }}> {/* userSelect: 'none' para evitar seleção */}
-                    Casa
-                </Title>
-            </TitleContainer>
             <TextStatus>Status das tarefas:</TextStatus>
             <StatusContainer>
                 {/* Aqui você pode adicionar qualquer conteúdo adicional, se necessário */}
