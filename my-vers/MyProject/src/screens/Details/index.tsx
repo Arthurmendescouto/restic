@@ -3,7 +3,7 @@ import {
     TopContainer, 
     TopButton, 
     TitleContainer, 
-    Title, 
+    CardTitle, 
     StatusContainer, 
     TextStatus 
 } from "./styles";
@@ -22,10 +22,6 @@ export default function Details({ route }: Props) {
         navigation.goBack();
     };
 
-    const handleTitlePress = () => {
-        console.log("Título 'Casa' clicado");
-    };
-
     return (
         <Container>
             <TopContainer>
@@ -33,9 +29,9 @@ export default function Details({ route }: Props) {
                     <Feather name="chevron-left" size={24} color="white" />
                 </TopButton>
                 <TitleContainer>
-                    <Title style={{ userSelect: 'none' }} >
+                    <CardTitle>
                         Casa
-                    </Title>
+                    </CardTitle>
                 </TitleContainer>
             </TopContainer>
             <TextStatus>Status das tarefas:</TextStatus>
