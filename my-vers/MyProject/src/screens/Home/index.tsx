@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import "@expo/metro-runtime";
-import { FlatList, StyleSheet, View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { FlatList, StyleSheet, View, Text, Alert } from 'react-native';
 import { Task } from '../../components/Task';
 import { CardHouse } from '../../components/CardHouse';
 import { InputAddTask } from '../../components/InputAddTask';
 
-type TaskType={
-    description:string;
-    check:Boolean;
+type TaskType = {
+    id: string; // Adiciona a propriedade ID
+    description: string;
+    check: boolean;
 }
 
 export default function Home() {
-  const [tasks, setTasks] = useState<{ description: string; check: boolean }[]>([]);
+  const [tasks, setTasks] = useState<TaskType[]>([]);
   const [taskText, setTaskText] = useState('');
 
   function handleTaskAdd() {
-    console.log('Task Text:', taskText); // Adicionei um console.log para depuração
-    if (taskText.trim().length === 0) { // Verifica se o texto está vazio ou apenas com espaços
+    console.log('Task Text:', taskText);
+    if (taskText.trim().length === 0) {
       Alert.alert('Erro', 'Coloque uma tarefa!');
       return;
     }
@@ -25,33 +26,44 @@ export default function Home() {
       return;
     }
 
-    const newTask = { description: taskText, check: false };
+    const newTask: TaskType = {
+      id: Math.random().toString(), // Gera um ID único
+      description: taskText,
+      check: false
+    };
     setTasks([...tasks, newTask]);
     setTaskText('');
   }
 
-  function handleTaskChangeStatus(taskToChange:TaskType) {
-    // Atualiza o status da tarefa clicada e mantém as outras inalteradas
+  function handleTaskChangeStatus(taskToChange: TaskType) {
     const updatedTasks = tasks.map(task =>
-      task.description === taskToChange.description
+      task.id === taskToChange.id // Usa o ID para identificar a tarefa
         ? { ...task, check: !task.check }
         : task
     );
     setTasks(updatedTasks);
   }
 
+  function handleTaskRemove(id: string) {
+    setTasks(tasks.filter(task => task.id !== id)); // Remove a tarefa
+  }
+
   return (
     <View style={styles.container}>
-      
       <CardHouse /> 
       <InputAddTask onPress={handleTaskAdd} OnchangeText={setTaskText} value={taskText} /> 
       
       <FlatList 
         data={tasks}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item) => item.id} // Usa o ID como chave
         renderItem={({ item }) => (
-          <Task title={item.description} status={item.check}
-          onCheck={()=>handleTaskChangeStatus(item)} />
+          <Task 
+            id={item.id} // Passa o ID aqui
+            title={item.description} 
+            status={item.check}
+            onCheck={() => handleTaskChangeStatus(item)} 
+            onRemove={() => handleTaskRemove(item.id)} // Passa a função de remoção
+          />
         )}
         ListEmptyComponent={() => (
           <View>
@@ -60,8 +72,6 @@ export default function Home() {
           </View>
         )}
       />
-
-     
     </View>
   );
 }

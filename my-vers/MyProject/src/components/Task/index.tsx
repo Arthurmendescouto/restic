@@ -7,14 +7,10 @@ import{TaskProps, RootStackParamList} from "../../utils/types";
 import {NativeStackScreenProps} from '@react-navigation/native-stack'
 
 
-type Props={
-  title: string;
-  status: boolean;
-  onCheck?:()=>void
-  onRemove?:()=>void;
-}
+type Props = NativeStackScreenProps<RootStackParamList>;
 
-export function Task({ title,status,onCheck,onRemove }: Props) {
+
+export function Task({ title,status,onCheck,onRemove }: TaskProps) {
 
 
 
