@@ -52,7 +52,7 @@ export function TaskProvider({ children }: TaskProviderProps) {
 
   function createTask(title: string) {
     const newTask = {
-      id: (tasks.length + 1).toString(),
+      id: Math.random().toString(),
       title: title,
       status: false,
     };
