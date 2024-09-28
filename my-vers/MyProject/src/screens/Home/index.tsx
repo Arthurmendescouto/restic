@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect,useContext } from 'react';
 import "@expo/metro-runtime";
 import { FlatList, StyleSheet, View, Text, Alert } from 'react-native';
 import { Task } from '../../components/Task';
 import { CardHouse } from '../../components/CardHouse';
 import { InputAddTask } from '../../components/InputAddTask';
+import { TaskContext } from '../../context/TaskContext';
 
 type TaskType = {
     id: string; // Adiciona a propriedade ID
@@ -12,6 +13,7 @@ type TaskType = {
 }
 
 export default function Home() {
+  const {task,createTask} =useContext(TaskContext)
   const [tasks, setTasks] = useState<TaskType[]>([]);
   const [taskText, setTaskText] = useState('');
 
