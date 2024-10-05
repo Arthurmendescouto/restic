@@ -1,12 +1,14 @@
+// src/screens/Menu.js
 import React from "react";
-import { View, Text } from "react-native";
+import { Container, MenuText } from "./styles"; // Importando os estilos
 
 const Menu = () => {
   return (
-    <View>
-      <Text>Tela do Menu</Text>
-    </View>
+    <Container>
+      <MenuText>Tela do Menu</MenuText>
+    </Container>
   );
 };
+
 
 export default Menu;
