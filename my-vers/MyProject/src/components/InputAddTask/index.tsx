@@ -5,10 +5,11 @@ import { TextInput } from 'react-native';
 type Props= {
     onPress:()=> void;
     OnchangeText:(text: string)=> void;
+    onBlur: (e: any)=> void;
     value:string;
 }
 
-export function InputAddTask({onPress, OnchangeText, value}:Props){
+export function InputAddTask({onPress, OnchangeText,onBlur ,value}:Props){
     return(
         <InputContainer>
             <Input 
@@ -18,6 +19,7 @@ export function InputAddTask({onPress, OnchangeText, value}:Props){
                 value={value}
                 onChangeText={OnchangeText}
                 onSubmitEditing={onPress}
+                onBlur={onBlur}
             ></Input>
             <InputButton onPress={onPress}>
                 <Feather name="plus-square" size={24} color="white" />

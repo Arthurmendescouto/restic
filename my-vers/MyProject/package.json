@@ -16,6 +16,7 @@
     "@types/react-native": "^0.73.0",
     "@types/styled-components": "^5.1.34",
     "expo-status-bar": "~1.12.1",
+    "formik": "^2.4.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.5",
@@ -23,7 +24,8 @@
     "react-native-screens": "3.31.1",
     "react-native-vector-icons": "^10.1.0",
     "react-native-web": "~0.19.10",
-    "styled-components": "^6.1.13"
+    "styled-components": "^6.1.13",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
