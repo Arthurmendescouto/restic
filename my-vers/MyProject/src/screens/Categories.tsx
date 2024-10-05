@@ -8,6 +8,8 @@ import {
   TextInput,
   Alert,
   StatusBar,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { TaskContext } from "../context/TaskContext";
@@ -40,7 +42,6 @@ export default function Categories() {
     }
     addCategory(newCategory);
     setNewCategory("");
-    // navigation.navigate("Tasks", { category: newCategory });
   };
 
   const handleRemoveCategory = (categoryId: string, categoryName: string) => {
@@ -77,13 +78,16 @@ export default function Categories() {
         style={styles.deleteButton}
         onPress={() => handleRemoveCategory(item.id, item.name)}
       >
-        <Icon name="delete" size={24} color="#FFf" />
+        <Icon name="delete" size={24} color="#FFF" />
       </TouchableOpacity>
     </View>
   );
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <StatusBar backgroundColor="#000000" barStyle="light-content" />
       <Text style={styles.title}>Categorias</Text>
       <View style={styles.inputContainer}>
@@ -92,6 +96,8 @@ export default function Categories() {
           placeholder="Nova categoria"
           value={newCategory}
           onChangeText={setNewCategory}
+          onSubmitEditing={handleAddCategory}
+          returnKeyType="done"
           placeholderTextColor="#999"
         />
         <TouchableOpacity style={styles.addButton} onPress={handleAddCategory}>
@@ -106,10 +112,9 @@ export default function Categories() {
           <Text style={styles.emptyText}>Nenhuma categoria adicionada</Text>
         )}
       />
-    </View>
+    </KeyboardAvoidingView>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

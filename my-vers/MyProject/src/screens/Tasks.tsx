@@ -9,10 +9,13 @@ import {
   TouchableOpacity,
   Alert,
   StatusBar,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { useRoute, RouteProp, useNavigation } from "@react-navigation/native";
 import { TaskContext } from "../context/TaskContext";
 import { TaskProps } from "../utils/types";
+import { CategoryHeader } from "../components/CardTask";
 
 type TasksRouteProp = RouteProp<
   { Tasks: { category: string; color: string } },
@@ -76,7 +79,10 @@ export default function Tasks() {
   );
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <StatusBar backgroundColor="#000000" barStyle="light-content" />
       <TouchableOpacity
         onPress={() => navigation.goBack()}
@@ -84,7 +90,7 @@ export default function Tasks() {
       >
         <Feather name="chevron-left" size={24} color="white" />
       </TouchableOpacity>
-      <Text style={[styles.title, { color: color }]}>{category}</Text>
+      <CategoryHeader title={category} color={color} />
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -92,6 +98,8 @@ export default function Tasks() {
           placeholderTextColor="#999"
           value={newTaskTitle}
           onChangeText={setNewTaskTitle}
+          onSubmitEditing={handleAddTask}
+          returnKeyType="done"
         />
         <TouchableOpacity onPress={handleAddTask} style={styles.addButton}>
           <Text style={styles.addButtonText}>Adicionar</Text>
@@ -105,32 +113,25 @@ export default function Tasks() {
           <Text style={styles.emptyText}>Nenhuma tarefa adicionada</Text>
         )}
       />
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     backgroundColor: "#000000",
   },
   backButton: {
-    marginBottom: 20,
-  },
-  backButtonText: {
-    color: "#fff",
-    fontSize: 16,
-  },
-  title: {
-    textAlign: "center",
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
+    position: "absolute",
+    top: 40,
+    left: 20,
+    zIndex: 1,
   },
   inputContainer: {
     flexDirection: "row",
     marginBottom: 20,
+    paddingHorizontal: 20,
   },
   input: {
     flex: 1,
@@ -154,16 +155,16 @@ const styles = StyleSheet.create({
   taskItem: {
     flexDirection: "row",
     alignItems: "center",
-
     padding: 15,
     marginBottom: 10,
     borderRadius: 5,
+    marginHorizontal: 20,
   },
   taskCheckbox: {
     width: 24,
     height: 24,
     borderWidth: 2,
-    borderColor: "#4CAF50",
+    borderColor: "#ffffff",
     borderRadius: 12,
     marginRight: 10,
     justifyContent: "center",
@@ -172,23 +173,23 @@ const styles = StyleSheet.create({
   taskCheckboxInner: {
     width: 12,
     height: 12,
-    backgroundColor: "#4CAF50",
+    backgroundColor: "#ffffff",
     borderRadius: 6,
   },
   taskTitle: {
     flex: 1,
-    color: "#ffffff",
+    color: "#000",
     fontSize: 16,
   },
   taskTitleCompleted: {
     textDecorationLine: "line-through",
-    color: "#888888",
+    color: "#cccccc",
   },
   removeButton: {
     padding: 5,
   },
   removeButtonText: {
-    color: "#FF0000",
+    color: "#ffffff",
     fontSize: 16,
     fontWeight: "bold",
   },
