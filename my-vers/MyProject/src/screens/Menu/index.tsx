@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { FontAwesome, Ionicons } from '@expo/vector-icons'; // Certifique-se de instalar @expo/vector-icons
 
 const App = () => {
+  const [currentTime, setCurrentTime] = useState('');
+  const [currentDate, setCurrentDate] = useState('');
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const date = now.toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' });
+
+      setCurrentTime(time);
+      setCurrentDate(date);
+    }, 1000); // Atualiza a cada segundo
+
+    return () => clearInterval(interval); // Limpa o intervalo ao desmontar o componente
+  }, []);
+
   return (
     <View style={styles.container}>
       {/* Header com ícones e nome do usuário */}
@@ -25,14 +41,10 @@ const App = () => {
         <Ionicons name="search" size={24} color="#999" style={styles.searchIcon} />
       </View>
 
-      {/* Progresso */}
-      <View style={styles.progressContainer}>
-        <Text style={styles.progressText}>Progresso</Text>
-        <Text style={styles.progressDetails}>30/40 Concluído</Text>
-        <View style={styles.progressCircle}>
-          <Text style={styles.progressPercentage}>50%</Text>
-        </View>
-        <Text style={styles.progressDate}>29 Julho</Text>
+      {/* Relógio funcional */}
+      <View style={styles.clockContainer}>
+        <Text style={styles.clockTime}>{currentTime}</Text>
+        <Text style={styles.clockDate}>{currentDate}</Text>
       </View>
 
       {/* Centralizar Caixas de Tarefas */}
@@ -62,11 +74,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#000',
     paddingHorizontal: 20,
-    justifyContent: 'space-between', // Centraliza o conteúdo verticalmente
+    justifyContent: 'space-between',
   },
   header: {
-    marginTop: 40,
-    marginBottom: 20,
+    marginTop: 20,
+    marginBottom: 10,
   },
   icons: {
     flexDirection: 'row',
@@ -96,49 +108,36 @@ const styles = StyleSheet.create({
     flex: 1,
     color: 'white',
     fontSize: 16,
+    paddingVertical:12,
+    paddingHorizontal:16,
   },
   searchIcon: {
     marginLeft: 10,
   },
-  progressContainer: {
+  clockContainer: {
     backgroundColor: '#1e1e1e',
     borderRadius: 10,
     padding: 20,
     marginBottom: 20,
-  },
-  progressText: {
-    color: 'white',
-    fontSize: 18,
-  },
-  progressDetails: {
-    color: 'white',
-    marginTop: 10,
-    fontSize: 16,
-  },
-  progressCircle: {
-    marginTop: 10,
-    backgroundColor: '#333',
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    justifyContent: 'center',
     alignItems: 'center',
   },
-  progressPercentage: {
-    color: '#00f',
-    fontSize: 20,
+  clockTime: {
+    color: '#fff',
+    fontSize: 48,
+    fontWeight: 'bold',
   },
-  progressDate: {
+  clockDate: {
     color: 'white',
-    marginTop: 10,
+    fontSize: 18,
+    marginTop: 5,
   },
   taskContainer: {
-    justifyContent: 'center', // Centraliza as tarefas verticalmente
-    alignItems: 'center', // Centraliza horizontalmente
-    marginVertical: 20, // Ajuste a margem vertical para centralização
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 20,
   },
   taskBarCasa: {
-    backgroundColor: '#7e51ff',
+    backgroundColor: '#734ed7',
     paddingVertical: 15,
     borderRadius: 10,
     marginBottom: 10,
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   taskBarTrabalho: {
-    backgroundColor: '#4ba3fa',
+    backgroundColor: '#0000ffd2',
     paddingVertical: 15,
     borderRadius: 10,
     marginBottom: 10,
@@ -156,7 +155,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   taskBarFaculdade: {
-    backgroundColor: '#3dd598',
+    backgroundColor: '#228b22',
     paddingVertical: 15,
     borderRadius: 10,
     marginBottom: 10,
@@ -177,7 +176,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     justifyContent: 'center',
     marginTop: 10,
-    marginBottom: 20, // Ajusta o espaçamento inferior para centralizar melhor
+    marginBottom: 20,
   },
   addButtonText: {
     color: 'white',
