@@ -41,7 +41,7 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <CardCollege />
+      
 
       <Formik
         initialValues={{ taskText: '' }}

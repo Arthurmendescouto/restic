@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   taskBarCasa: {
-    backgroundColor: '#734ed7',
+    backgroundColor: '#582fc8',
     paddingVertical: 15,
     borderRadius: 10,
     marginBottom: 10,
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   taskBarTrabalho: {
-    backgroundColor: '#0000ffd2',
+    backgroundColor: '#2626adfe',
     paddingVertical: 15,
     borderRadius: 10,
     marginBottom: 10,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
   addButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#00f',
+    backgroundColor: '#0059ff',
     borderRadius: 10,
     paddingVertical: 15,
     justifyContent: 'center',

@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"; 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Menu from "./src/screens/Menu"; 
@@ -18,16 +18,39 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Menu"
-          screenOptions={{ headerShown: true }}
+          screenOptions={{
+            headerShown: true,
+            headerStyle: { backgroundColor: '#000000' },
+            headerTintColor: '#fff',
+          }}
         >
-          <Stack.Screen name="Menu" component={Menu} />
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Work" component={Work} />
-          <Stack.Screen name="College" component={College} />
-          <Stack.Screen name="Details" component={Details} />
-          
+          <Stack.Screen 
+            name="Menu" 
+            component={Menu} 
+            options={{ title: 'Menu Principal' }} // Título personalizado para Menu
+          />
+          <Stack.Screen 
+            name="Home" 
+            component={Home} 
+            options={{ title: 'Página Inicial' }} // Título personalizado para Home
+          />
+          <Stack.Screen 
+            name="Work" 
+            component={Work} 
+            options={{ title: 'Trabalho' }} // Título personalizado para Work
+          />
+          <Stack.Screen 
+            name="College" 
+            component={College} 
+            options={{ title: 'Faculdade' }} // Título personalizado para College
+          />
+          <Stack.Screen 
+            name="Details" 
+            component={Details} 
+            options={{ title: 'Detalhes', headerShown: false }} // Título personalizado para Details e cabeçalho oculto
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </TaskProvider>
-  );
+  );
 }
