@@ -46,7 +46,7 @@ export default function Home() {
         initialValues={{ taskText: '' }}
         validationSchema={Yup.object().shape({
           taskText: Yup.string()
-            .min(4, 'A tarefa deve ter pelo menos 5 letras')
+            .min(3, 'A tarefa deve ter pelo menos 3 letras')
             .max(20, 'A tarefa deve ter no máximo 20 letras')
             .required('A tarefa é obrigatória'),
         })}
