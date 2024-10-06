@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { FlatList, StyleSheet, View, Text, Alert } from "react-native";
 import { Task } from "../../components/Task";
-import  CardHouse  from "../../components/CardHouse";
+import  {CardHouse}  from "../../components/CardHouse";
 import { InputAddTask } from "../../components/InputAddTask";
 import { TaskContext } from "../../context/TaskContext";
 import { TaskProps } from "../../utils/types"; // Importando TaskProps
