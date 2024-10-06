@@ -7,6 +7,7 @@ export type TaskProps = {
 };
 
 export type RootStackParamList = {
+    Menu:undefined;
     Home: undefined;
     Details: TaskProps;
 };

@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
-import { FontAwesome, Ionicons } from '@expo/vector-icons'; // Certifique-se de instalar @expo/vector-icons
+import { Ionicons } from '@expo/vector-icons'; // Certifique-se de instalar @expo/vector-icons
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../utils/types'; // Importe os tipos definidos
+import { useNavigation } from '@react-navigation/native';
 
-const App = () => {
+// Definindo o tipo de navegação
+type MenuScreenProp = StackNavigationProp<RootStackParamList, 'Menu'>;
+
+const Menu = () => {
   const [currentTime, setCurrentTime] = useState('');
   const [currentDate, setCurrentDate] = useState('');
+  const navigation = useNavigation<MenuScreenProp>(); // Tipagem correta para o hook de navegação
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,12 +28,8 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      {/* Header com ícones e nome do usuário */}
+      {/* Header sem ícones */}
       <View style={styles.header}>
-        <View style={styles.icons}>
-          {/* <FontAwesome name="th-large" size={24} color="white" /> /} {/ Removido */}
-          {/*<Ionicons name="notifications-outline" size={24} color="white" />*/}
-        </View>
         <Text style={styles.greeting}>Oi, <Text style={styles.userName}>Antonio</Text></Text>
         <Text style={styles.subGreeting}>Tenha um dia Criativo!</Text>
       </View>
@@ -49,7 +52,10 @@ const App = () => {
 
       {/* Centralizar Caixas de Tarefas */}
       <ScrollView contentContainerStyle={styles.taskContainer}>
-        <TouchableOpacity style={styles.taskBarCasa}>
+        <TouchableOpacity 
+          style={styles.taskBarCasa} 
+          onPress={() => navigation.navigate('Home')} // Navega para a tela Home
+        >
           <Text style={styles.taskBarText}>Casa</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.taskBarTrabalho}>
@@ -80,10 +86,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
   },
-  icons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
   greeting: {
     color: 'white',
     fontSize: 24,
@@ -108,8 +110,8 @@ const styles = StyleSheet.create({
     flex: 1,
     color: 'white',
     fontSize: 16,
-    paddingVertical:12,
-    paddingHorizontal:16,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
   },
   searchIcon: {
     marginLeft: 10,
@@ -185,4 +187,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Menu;

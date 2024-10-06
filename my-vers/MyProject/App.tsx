@@ -5,8 +5,10 @@ import Menu from "./src/screens/Menu";
 import Home from "./src/screens/Home";
 import Details from "./src/screens/Details";
 import { TaskProvider } from "./src/context/TaskContext";
+import { RootStackParamList } from "./src/utils/types"; // Certifique-se de que isso esteja correto
 
-const Stack = createNativeStackNavigator();
+// Defina o tipo do stack
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
@@ -17,9 +19,10 @@ export default function App() {
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="Menu" component={Menu} />
-          <Stack.Screen name="Details" component={Menu} />
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Details" component={Details} />
         </Stack.Navigator>
       </NavigationContainer>
     </TaskProvider>
-  );
+  );
 }
