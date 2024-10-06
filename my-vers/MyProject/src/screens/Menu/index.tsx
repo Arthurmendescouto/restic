@@ -24,8 +24,8 @@ const App = () => {
       {/* Header com ícones e nome do usuário */}
       <View style={styles.header}>
         <View style={styles.icons}>
-          <FontAwesome name="th-large" size={24} color="white" />
-          <Ionicons name="notifications-outline" size={24} color="white" />
+          {/* <FontAwesome name="th-large" size={24} color="white" /> /} {/ Removido */}
+          {/*<Ionicons name="notifications-outline" size={24} color="white" />*/}
         </View>
         <Text style={styles.greeting}>Oi, <Text style={styles.userName}>Antonio</Text></Text>
         <Text style={styles.subGreeting}>Tenha um dia Criativo!</Text>
