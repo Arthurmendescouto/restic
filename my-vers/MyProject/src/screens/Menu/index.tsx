@@ -66,7 +66,8 @@ const Menu = () => {
         </TouchableOpacity>
 
 
-        <TouchableOpacity style={styles.taskBarFaculdade}>
+        <TouchableOpacity style={styles.taskBarFaculdade}
+        onPress={() => navigation.navigate('College')}>
           <Text style={styles.taskBarText}>Faculdade</Text>
         </TouchableOpacity>
       </ScrollView>

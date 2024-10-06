@@ -10,5 +10,6 @@ export type RootStackParamList = {
     Menu:undefined;
     Home: undefined;
     Work:undefined;
+    College:undefined;
     Details: TaskProps;
 };
