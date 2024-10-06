@@ -1,32 +1,31 @@
 import React, { useState, useContext } from "react";
 import { FlatList, StyleSheet, View, Text, Alert } from "react-native";
 import { Task } from "../../components/Task";
-import  {CardHouse}  from "../../components/CardHouse";
-import {CardWork} from "../../components/CardWork"
+import { CardHouse } from "../../components/CardHouse";
 import { InputAddTask } from "../../components/InputAddTask";
 import { TaskContext } from "../../context/TaskContext";
 import { TaskProps } from "../../utils/types"; // Importando TaskProps
-
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { CardWork } from "../../components/CardWork";
 
 export default function Home() {
   const { tasks, setTasks, createTask } = useContext(TaskContext);
-  const [taskText, setTaskText] = useState("");
+  const [duplicateError, setDuplicateError] = useState(''); // Estado para gerenciar erros de duplicação
 
-  function handleTaskAdd(text: string) { // Alterado para aceitar o texto da tarefa
-    console.log("Task Text:", text);
+  function handleTaskAdd(text: string) {
     if (text.trim().length === 0) {
       Alert.alert("Erro", "Coloque uma tarefa!");
-      return;
+      return false;
     }
     if (tasks.some((task: TaskProps) => task.title === text)) {
-      Alert.alert("Erro", "Tarefa já existe!");
-      return;
+      setDuplicateError('Tarefa já existe!'); // Define a mensagem de erro de duplicação
+      return false;
     }
 
-    createTask(text); // Adicionando a nova tarefa
-    setTaskText(""); // Limpando o campo de texto
+    setDuplicateError(''); // Reseta a mensagem de erro de duplicação
+    createTask(text);
+    return true;
   }
 
   function handleTaskChangeStatus(taskToChange: TaskProps) {
@@ -40,34 +39,45 @@ export default function Home() {
     setTasks(tasks.filter((task) => task.id !== id));
   }
 
-  // Função para lidar com o evento onBlur
-  function handleBlur() {
-    // Lógica que você deseja executar ao perder o foco (pode ser vazia)
-  }
-
   return (
     <View style={styles.container}>
       <CardWork />
-      
+
       <Formik
         initialValues={{ taskText: '' }}
         validationSchema={Yup.object().shape({
-          taskText: Yup.string().required('A tarefa é obrigatória'),
+          taskText: Yup.string()
+            .min(4, 'A tarefa deve ter pelo menos 5 letras')
+            .max(20, 'A tarefa deve ter no máximo 20 letras')
+            .required('A tarefa é obrigatória'),
         })}
         onSubmit={(values, { resetForm }) => {
-          handleTaskAdd(values.taskText); // Chama a função com o valor da tarefa
-          resetForm({ values: { taskText: '' } });
+          if (handleTaskAdd(values.taskText)) {
+            resetForm(); // Limpa o formulário
+            setDuplicateError(''); // Reseta a mensagem de erro de duplicação ao enviar uma nova tarefa
+          }
         }}
       >
-        {({ handleChange, handleSubmit, values, errors }) => (
+        {({ handleChange, handleSubmit, values, errors, touched }) => (
           <>
             <InputAddTask
-              onPress={handleSubmit} // Chama o handleSubmit do Formik
-              OnchangeText={handleChange('taskText')}
+              onPress={handleSubmit}
+              OnchangeText={(text) => {
+                handleChange('taskText')(text); // Atualiza o texto
+                // Limpa o erro de duplicação se o texto não for mais duplicado
+                if (duplicateError && !tasks.some((task: TaskProps) => task.title === text)) {
+                  setDuplicateError('');
+                }
+              }}
               value={values.taskText}
-              onBlur={handleBlur} // Adicionando a propriedade onBlur
+              onBlur={() => touched.taskText = true} // Marca como tocado ao sair do campo
             />
-            {errors.taskText && <Text style={styles.errorText}>{errors.taskText}</Text>}
+            {touched.taskText && errors.taskText && (
+              <Text style={styles.errorText}>{errors.taskText}</Text>
+            )}
+            {duplicateError && (
+              <Text style={styles.duplicateErrorText}>{duplicateError}</Text> // Mensagem de erro de duplicação
+            )}
           </>
         )}
       </Formik>
@@ -112,6 +122,10 @@ const styles = StyleSheet.create({
     color: "#ffffff",
   },
   errorText: {
+    color: 'red',
+    marginTop: 8,
+  },
+  duplicateErrorText: {
     color: 'red',
     marginTop: 8,
   },

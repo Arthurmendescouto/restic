@@ -4,7 +4,7 @@ export const Container=styled.View`
 width: 464px;
 height: 250px;
 border-radius: 110px;
-background-color: #714dd9;
+background-color: #0000D1;
 overflow: hidden;
 gap: 8px;
 display: flex;
