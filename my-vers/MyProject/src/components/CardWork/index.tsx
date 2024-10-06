@@ -13,7 +13,7 @@ const Casa = () => {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
-        <Text style={styles.title}>Casa</Text>
+        <Text style={styles.title}>Trabalho</Text>
       </View>
     </View>
   );

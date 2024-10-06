@@ -58,9 +58,14 @@ const Menu = () => {
         >
           <Text style={styles.taskBarText}>Casa</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.taskBarTrabalho}>
+
+
+        <TouchableOpacity style={styles.taskBarTrabalho}
+        onPress={() => navigation.navigate('Work')}>
           <Text style={styles.taskBarText}>Trabalho</Text>
         </TouchableOpacity>
+
+
         <TouchableOpacity style={styles.taskBarFaculdade}>
           <Text style={styles.taskBarText}>Faculdade</Text>
         </TouchableOpacity>

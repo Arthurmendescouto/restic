@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Menu from "./src/screens/Menu"; 
 import Home from "./src/screens/Home";
+import Work from "./src/screens/Work";
 import Details from "./src/screens/Details";
 import { TaskProvider } from "./src/context/TaskContext";
 import { RootStackParamList } from "./src/utils/types"; // Certifique-se de que isso esteja correto
@@ -20,7 +21,9 @@ export default function App() {
         >
           <Stack.Screen name="Menu" component={Menu} />
           <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Work" component={Work} />
           <Stack.Screen name="Details" component={Details} />
+          
         </Stack.Navigator>
       </NavigationContainer>
     </TaskProvider>
