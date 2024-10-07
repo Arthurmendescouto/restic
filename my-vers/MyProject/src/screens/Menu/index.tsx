@@ -73,10 +73,10 @@ const Menu = () => {
       </ScrollView>
 
       {/* Botão Adicionar Tarefa */}
-      <TouchableOpacity style={styles.addButton}>
+      {/* <TouchableOpacity style={styles.addButton}>
         <Ionicons name="add" size={24} color="white" />
         <Text style={styles.addButtonText}>Adicionar Tarefa</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };

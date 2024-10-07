@@ -17,7 +17,7 @@ export default function Home() {
       Alert.alert("Erro", "Coloque uma tarefa!");
       return false;
     }
-    if (tasks.some((task: TaskProps) => task.title === text)) {
+    if (tasks.some((task: TaskProps) => task.title === text && task.tag==="casa")) {
       setDuplicateError('Tarefa já existe!'); // Define a mensagem de erro de duplicação
       return false;
     }
