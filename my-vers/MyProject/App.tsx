@@ -27,12 +27,12 @@ export default function App() {
           <Stack.Screen 
             name="Menu" 
             component={Menu} 
-            options={{ title: 'Menu Principal' }} // Título personalizado para Menu
+            options={{ title: '' }} // Título personalizado para Menu
           />
           <Stack.Screen 
             name="Home" 
             component={Home} 
-            options={{ title: 'Página Inicial' }} // Título personalizado para Home
+            options={{ title: 'Casa' }} // Título personalizado para Home
           />
           <Stack.Screen 
             name="Work" 
