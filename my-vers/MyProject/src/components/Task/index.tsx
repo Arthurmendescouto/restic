@@ -8,11 +8,11 @@ import { useNavigation } from '@react-navigation/native';
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 
-export function Task({ id, title, status, onCheck, onRemove }: TaskProps) {
+export function Task({ id, title, status, tag, onCheck, onRemove }: TaskProps) {
   const navigation = useNavigation<Props['navigation']>();
 
   function handlePress() {
-    navigation.navigate('Details', { id, title, status });
+    navigation.navigate('Details', { id, title, status, tag });
   }
 
   return (

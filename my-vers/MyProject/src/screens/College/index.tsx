@@ -24,7 +24,7 @@ export default function Home() {
     }
 
     setDuplicateError(''); // Reseta a mensagem de erro de duplicação
-    createTask(text);
+    createTask(text,"Faculdade");
     return true;
   }
 
@@ -83,7 +83,7 @@ export default function Home() {
       </Formik>
 
       <FlatList
-        data={tasks}
+        data={tasks.filter((task)=>task.tag==="Faculdade")}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <Task
@@ -92,6 +92,7 @@ export default function Home() {
             status={item.status}
             onCheck={() => handleTaskChangeStatus(item)}
             onRemove={() => handleTaskRemove(item.id)}
+            tag="Faculdade"
           />
         )}
         ListEmptyComponent={() => (

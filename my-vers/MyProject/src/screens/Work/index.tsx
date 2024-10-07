@@ -9,6 +9,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { CardWork } from "../../components/CardWork";
 
+
 export default function Home() {
   const { tasks, setTasks, createTask } = useContext(TaskContext);
   const [duplicateError, setDuplicateError] = useState(''); // Estado para gerenciar erros de duplicação
@@ -24,7 +25,7 @@ export default function Home() {
     }
 
     setDuplicateError(''); // Reseta a mensagem de erro de duplicação
-    createTask(text);
+    createTask(text,"Trabalho");
     return true;
   }
 
@@ -83,7 +84,7 @@ export default function Home() {
       </Formik>
 
       <FlatList
-        data={tasks}
+        data={tasks.filter((task)=>task.tag ==="Trabalho")}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <Task
@@ -92,6 +93,7 @@ export default function Home() {
             status={item.status}
             onCheck={() => handleTaskChangeStatus(item)}
             onRemove={() => handleTaskRemove(item.id)}
+            tag="Trabalho"
           />
         )}
         ListEmptyComponent={() => (

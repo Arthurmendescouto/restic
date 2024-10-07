@@ -7,7 +7,7 @@ interface TaskContextProps {
   selectTask: (task: TaskProps) => void;
   clearTask: () => void;
   tasks: TaskProps[];
-  createTask: (title: string) => void;
+  createTask: (title: string,tag:string) => void;
   setTasks: React.Dispatch<React.SetStateAction<TaskProps[]>>; // Adicionado
 }
 
@@ -16,7 +16,7 @@ interface TaskProviderProps {
 }
 
 export const TaskContext = createContext<TaskContextProps>({
-  task: { id: "0", title: "", status: false },
+  task: { id: "0", title: "", status: false,tag:"" },
   selectTask: () => {},
   tasks: [],
   clearTask: () => {},
@@ -28,6 +28,7 @@ export function TaskProvider({ children }: TaskProviderProps) {
     id: "0",
     title: "",
     status: false,
+    tag:"",
   });
   const [tasks, setTasks] = useState<TaskProps[]>([] as TaskProps[]);
 
@@ -50,11 +51,12 @@ export function TaskProvider({ children }: TaskProviderProps) {
     }
   }
 
-  function createTask(title: string) {
+  function createTask(title: string, tag:string) {
     const newTask = {
       id: Math.random().toString(),
       title: title,
       status: false,
+      tag
     };
     setTasks([...tasks, newTask]);
   }
@@ -64,7 +66,7 @@ export function TaskProvider({ children }: TaskProviderProps) {
   }
 
   function clearTask() {
-    setTask({ id: "0", title: "", status: false });
+    setTask({ id: "0", title: "", status: false,tag:"" });
   }
 
   useEffect(() => {

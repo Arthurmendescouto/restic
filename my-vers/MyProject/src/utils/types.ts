@@ -3,7 +3,8 @@ export type TaskProps = {
     title: string;
     status: boolean;
     onCheck?: () => void;
-    onRemove?: () => void;  
+    onRemove?: () => void;
+    tag: string;  
 };
 
 export type RootStackParamList = {
