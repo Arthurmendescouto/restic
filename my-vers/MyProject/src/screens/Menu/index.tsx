@@ -35,14 +35,14 @@ const Menu = () => {
       </View>
 
       {/* Campo de pesquisa */}
-      <View style={styles.searchContainer}>
-        <TextInput
+      {/* <View style={styles.searchContainer}>
+      <TextInput
           style={styles.searchInput}
           placeholder="Pesquisar Tarefa"
           placeholderTextColor="#999"
         />
         <Ionicons name="search" size={24} color="#999" style={styles.searchIcon} />
-      </View>
+      </View> */}
 
       {/* Relógio funcional */}
       <View style={styles.clockContainer}>
