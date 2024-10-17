@@ -30,8 +30,8 @@ const Menu = () => {
     <View style={styles.container}>
       {/* Header sem ícones */}
       <View style={styles.header}>
-        <Text style={styles.greeting}>Oi, <Text style={styles.userName}>Antonio</Text></Text>
-        <Text style={styles.subGreeting}>Tenha um dia Criativo!</Text>
+      
+        <Text style={styles.greeting}>Tenha um dia Criativo!</Text>
       </View>
 
       {/* Campo de pesquisa */}

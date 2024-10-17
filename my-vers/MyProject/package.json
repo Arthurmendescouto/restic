@@ -17,6 +17,7 @@
     "@types/react-native": "^0.73.0",
     "@types/styled-components": "^5.1.34",
     "expo-status-bar": "~1.12.1",
+    "expo-updates": "~0.25.27",
     "formik": "^2.4.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
