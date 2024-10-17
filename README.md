@@ -6,7 +6,7 @@ Este projeto é uma aplicação de lista de tarefas com armazenamento local das 
 
 - React Native
 - TypeScript
-
+--Expo
 ## Deploy
 
 Você pode visualizar a versão mobile do projeto pelo seguinte link:
